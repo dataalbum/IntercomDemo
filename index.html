@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+<link rel="stylesheet" href="style.css">
+<title>Title</title>
+</head>
+      <body>
+        <div class="cover-container d-flex h-100 p-3 mx-auto flex-column">
+                <header class="masthead mb-auto">
+                  <div class="inner">
+                    <h3 class="masthead-brand">Cover</h3>
+                    <nav class="nav nav-masthead justify-content-center">
+                      <a class="nav-link active" href="#">Home</a>
+                      <a class="nav-link" href="#">Features</a>
+                      <a class="nav-link" href="#">Contact</a>
+                    </nav>
+                  </div>
+                </header>
+          
+                <main role="main" class="inner cover">
+                  <form>
+                    Name:<br>
+                    <input type="text" name="name" id="name" placeholder="Jon Snow"><br>
+                    Email:<br>
+                    <input type="text" name="email" id="email" placeholder="jonsnow@nothing.org"><br>
+                    User ID:<br>
+                    <input type="text" name="userId" id="userId" placeholder="12345"><br>
+                    City<br>
+                    <input type="text" name="city" id="city" placeholder="Oulu"><br>
+                    <button id="save">Save &amp; Reload</button>
+                  </form>
+                </main>
+          
+                <footer class="mastfoot mt-auto">
+                  <div class="inner">
+                    <p>Cover template for <a href="https://getbootstrap.com/">Bootstrap</a>, by <a href="https://twitter.com/mdo">@mdo</a>.</p>
+                  </div>
+                </footer>
+              </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.13.0/umd/popper.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script>
+    $(document).ready(function() {
+      $("#userId").val(getUserId());
+      $("#email").val(getEmail());
+      $("#name").val(getName());
+      $("#city").val(getCity());
+
+      $("#save").click(function() {
+        localStorage.setItem("userId", $("#userId").val());
+        localStorage.setItem("email", $("#email").val());
+        localStorage.setItem("name", $("#name").val());
+        localStorage.setItem("city", $("#city").val());
+
+        location.reload();
+      });
+    });
+
+    function getUserId() {
+      return localStorage.getItem("userId") || 12345;
+    }
+
+    function getEmail() {
+      return localStorage.getItem("email") || "jonsnow@nothing.test";
+    }
+
+    function getName(){
+      return localStorage.getItem("name") || "Jon Snow";
+    }
+
+    function getCity(){
+      return localStorage.getItem("city");
+    }
+</script>
+                    <script>
+                        var myAppId = "";
+                        var userEmail = getEmail();
+                        var userId = getUserId();
+                        var userName = getName();
+                        var city = getCity();
+            
+                        window.intercomSettings = {
+                          app_id: myAppId,
+                          email: userEmail,
+                          user_id: userId,
+                          name: userName,
+                          "_city": city
+                    };
+                    </script>
+                    <script>
+                      (function(){var w=window;var ic=w.Intercom;if(typeof ic==="function"){ic('reattach_activator');ic('update',intercomSettings);}else{var d=document;var i=function(){i.c(arguments)};i.q=[];i.c=function(args){i.q.push(args)};w.Intercom=i;function l(){var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://widget.intercom.io/widget/' + myAppId ;var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);}if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})()
+                    </script>
+</body>
+</html>
